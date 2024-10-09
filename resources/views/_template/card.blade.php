@@ -10,6 +10,13 @@
                             </a></h5>
                     </div>
                 </div>
+                <div>
+                    <form action="{{ route('post.destroy', $post->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -18,12 +25,14 @@
             </p>
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                                    </span> {{ $post->likes }} likov </a>
+                    <a href="#" class="fw-light nav-link fs-6">
+                        <span class="fas fa-heart me-1"></span> {{ $post->likes }} likov
+                    </a>
                 </div>
                 <div>
-                                <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
-                                    3-5-2023 </span>
+                    <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
+                        3-5-2023
+                    </span>
                 </div>
             </div>
             <div>
@@ -33,9 +42,7 @@
                 <div>
                     <button class="btn btn-primary btn-sm"> Post Comment </button>
                 </div>
-
                 <hr>
-
             </div>
         </div>
     </div>

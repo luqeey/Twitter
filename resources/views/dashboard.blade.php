@@ -37,18 +37,23 @@
         </div>
     </div>
     <div class="col-6">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Idea created Successfully
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <h4> Share yours ideas </h4>
         <div class="row">
-            <div class="mb-3">
-                <textarea class="form-control" id="idea" rows="3"></textarea>
-            </div>
-            <div class="">
-                <button class="btn btn-dark"> Share </button>
-            </div>
+            <form action="{{ route('post.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <textarea class="form-control" id="idea" name="content" rows="3"></textarea>
+                </div>
+                <div class="">
+                    <button class="btn btn-dark"> Share </button>
+                </div>
+            </form>
         </div>
         <hr>
         @foreach($posts as $post)
