@@ -9,5 +9,9 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-Route::post('/', [PostController::class, 'store'])->name('post.store');
-Route::delete('/{postId}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::group(['prefix' => ''], function () {
+    Route::post('/', [PostController::class, 'store'])->name('post.store');
+    Route::delete('/{postId}', [PostController::class, 'destroy'])->name('post.destroy');
+    Route::put('/{postId}', [PostController::class, 'update'])->name('post.update');
+    Route::get('/{postId}', [PostController::class, 'show'])->name('post.show');
+});

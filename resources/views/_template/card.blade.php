@@ -44,6 +44,26 @@
                 </div>
                 <hr>
             </div>
+            <div>
+                <button class="btn btn-secondary btn-sm" onclick="showUpdateForm({{ $post->id }})">Update post</button>
+            </div>
+            <div id="updateForm-{{ $post->id }}" style="display:none;">
+                <form action="{{ route('post.update', $post->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('PUT')
+                    <textarea name="content" class="form-control" rows="1">{{ $post->content }}</textarea>
+                    <button type="submit" class="btn btn-primary btn-sm mt-2">Confirm</button>
+                </form>
+            </div>
+            <div>
+                <a href="{{ route('post.show', $post->id) }}" class="btn btn-info btn-sm mt-2">View Post</a>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function showUpdateForm(postId) {
+        document.getElementById('updateForm-' + postId).style.display = 'block';
+    }
+</script>
