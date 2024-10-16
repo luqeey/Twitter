@@ -10,7 +10,7 @@
     @include('_template.nav')
 <div class="container py-4">
     {{-- obsah --}}
-    @include('_template.card')
+    @yield('content')
 </div>
     {{-- includovanie footeru --}}
     @include('layout.footer')
