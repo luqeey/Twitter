@@ -36,13 +36,26 @@
                 </div>
             </div>
             <div>
-                <div class="mb-3">
-                    <textarea class="fs-6 form-control" rows="1"></textarea>
-                </div>
-                <div>
-                    <button class="btn btn-primary btn-sm"> Post Comment </button>
-                </div>
-                <hr>
+                <h3>
+                    Comments:
+                </h3>
+            </div>
+            @foreach($post->comments as $comment)
+                <p>{{$comment->content}}</p>
+            @endforeach
+            <div>
+                <button id="addCommentButton-{{ $post->id }}" class="btn btn-primary btn-sm" onclick="showCommentForm({{ $post->id }})">Add Comment</button>
+            </div>
+            <div id="commentForm-{{ $post->id }}" style="display:none;">
+                <form action="{{ route('comment.store', $post->id) }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <textarea name="content" class="form-control" rows="1"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-sm">Post Comment</button>
+                    </div>
+                </form>
             </div>
             <div>
                 <button class="btn btn-secondary btn-sm" onclick="showUpdateForm({{ $post->id }})">Update post</button>
@@ -65,5 +78,10 @@
 <script>
     function showUpdateForm(postId) {
         document.getElementById('updateForm-' + postId).style.display = 'block';
+    }
+
+    function showCommentForm(postId) {
+        document.getElementById('commentForm-' + postId).style.display = 'block';
+        document.getElementById('addCommentButton-' + postId).style.display = 'none';
     }
 </script>
