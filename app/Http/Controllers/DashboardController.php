@@ -9,10 +9,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard',
-            [
-                'posts' => Post::orderBy('likes', 'desc')->get(),
-            ]
-        );
+        $query = Post::query();
+
+        if (request()->has('query')) {
+            $query->where('content', 'like', '%' . request('query') . '%');
+        }
+
+        $posts = $query->paginate(5);
+
+        return view('dashboard', ['posts' => $posts]);
     }
 }

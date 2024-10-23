@@ -15,5 +15,4 @@
     {{-- includovanie footeru --}}
     @include('layout.footer')
 </body>
-
 </html>

@@ -9,8 +9,12 @@ class PostController extends Controller
 {
     public function store(Request $request)
     {
+        $request->validate([
+            'content' => 'required|string|max:255',
+        ]);
+
         $post = new Post();
-        $post->setContent($request->content);
+        $post->content = $request->input('content');
         $post->likes = 0;
         $post->save();
 
@@ -27,7 +31,7 @@ class PostController extends Controller
     public function update(Request $request, $postId)
     {
         $post = Post::findOrFail($postId);
-        $post->setContent($request->content);
+        $post->content = $request->input('content');
         $post->save();
         return redirect()->route('dashboard.index')->with('success', 'Idea updated successfully');
     }
