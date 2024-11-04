@@ -7,7 +7,10 @@
 </head>
 <body>
     <h1>
-        This is profile page madafak
+        Profile
+    </h1>
+    <h1>
+        {{ auth()->user()->name }}
     </h1>
 </body>
 </html>
