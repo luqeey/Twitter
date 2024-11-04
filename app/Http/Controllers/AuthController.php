@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function register()
@@ -26,4 +26,23 @@ class AuthController extends Controller
 
         return redirect()->route('dashboard.index')->with('success', 'You have successfully registered!');
     }
+    public function login()
+    {
+        return view('auth.login');
+    }
+    public function authenticate(Request $request)
+    {
+        $data = request()->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+        if (auth()->attempt($data)) {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard.index')->with('success', 'Login successfully');
+        }
+        return redirect()->route('auth.login')->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
 }

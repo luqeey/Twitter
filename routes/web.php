@@ -10,6 +10,9 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
