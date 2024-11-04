@@ -12,6 +12,7 @@ Route::get('/register', [AuthController::class, 'register'])->name('auth.registe
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
