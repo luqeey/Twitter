@@ -12,7 +12,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="password" class="text-dark">Password:</label><br>
-                        <input type="text" name="password" id="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="remember-me" class="text-dark"></label><br>

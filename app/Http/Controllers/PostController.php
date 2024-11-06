@@ -14,6 +14,7 @@ class PostController extends Controller
         ]);
 
         $post = new Post();
+        $post->user_id = auth()->id();
         $post->content = $request->input('content');
         $post->likes = 0;
         $post->save();
