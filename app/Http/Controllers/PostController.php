@@ -24,6 +24,10 @@ class PostController extends Controller
 
     public function destroy($postId)
     {
+        if(auth()->id() !== Post::findOrFail($postId)->user_id) {
+            abort(404);
+        }
+
         $post = Post::findOrFail($postId);
         $post->delete();
         return redirect()->route('dashboard.index')->with('success', 'Idea deleted successfully');
@@ -31,6 +35,10 @@ class PostController extends Controller
 
     public function update(Request $request, $postId)
     {
+        if(auth()->id() !== Post::findOrFail($postId)->user_id) {
+            abort(404);
+        }
+
         $post = Post::findOrFail($postId);
         $post->content = $request->input('content');
         $post->save();

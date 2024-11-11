@@ -14,12 +14,11 @@ Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 Route::post('/', [PostController::class, 'store'])->name('post.store');
-Route::delete('/{postId}', [PostController::class, 'destroy'])->name('post.destroy');
-Route::put('/{postId}', [PostController::class, 'update'])->name('post.update');
+Route::delete('/{postId}', [PostController::class, 'destroy'])->name('post.destroy')->middleware('auth');
+Route::put('/{postId}', [PostController::class, 'update'])->name('post.update')->middleware('auth');
 Route::get('/{postId}', [PostController::class, 'show'])->name('post.show');
 
-Route::post('/{postId}/comment', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/{postId}/comment', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');

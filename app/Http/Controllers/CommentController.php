@@ -12,6 +12,7 @@ class CommentController extends Controller
     {
         $post = Post::findOrFail($postId);
         $comment = new Comment();
+        $comment->user_id = auth()->id();
         $comment->content = $request->content;
         $comment->post_id = $post->id;
         $comment->save();

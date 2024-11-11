@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $fillable = ['content', 'likes'];
+    public $fillable = ['content', 'likes', 'user_id'];
 
     public function setContent($content)
     {
@@ -19,5 +19,10 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class, 'post_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
